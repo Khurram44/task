@@ -64,7 +64,30 @@ function HomeComponent() {
     Swal.fire(JSON.stringify(file))
   }
 }
- 
+async function triggerLocalModal(){
+  const { value: formValues  } = await  Swal.fire({
+    title: 'Multiple inputs',
+    html:
+    '<label>Select Category</label>'+
+      '<select id="swal-input1" class="swal2-input"> <option value="Men">Men</option>'+
+      '<option value="Women">Women</option>'+
+      '<option value="Kids">Kids</option></select>' +
+      '<br/>'+
+      '<label>Select image From Computer</label>'+
+      `<input id="swal-input2" class="swal2-input" onchange="${((e)=>{console.log(data)
+         console.log((e.target.files[0]))})}" type="file">`,
+    focusConfirm: false,
+    preConfirm: () => {
+        data.push({id:data.length+1 ,category:document.getElementById('swal-input1').value ,thumbnail:URL.createObjectURL(document.getElementById('swal-input2').files[0]), original:URL.createObjectURL(document.getElementById('swal-input2').files[0])})
+        
+      
+    }
+  })
+  
+  if (file) {
+    Swal.fire(JSON.stringify(file))
+  }
+}
   return (
     <div >
       
@@ -77,12 +100,25 @@ function HomeComponent() {
       <div className='main'>
         <h2>Product gallery</h2>
       </div>
+      <div className='flexrow'> 
       <div className='upload'>
-        <button style={{ display: "", width: 120, height: 120,justifyContent:'center',alignItems:'center' }} type="file" onClick={triggerModal} >
+       
+        <button style={{ display: "", width: 120, height: 120,justifyContent:'center',alignItems:'center' }} type="file" onClick={()=>triggerLocalModal().then(e=>console.log(e,"e"))} >
           <img src={Upload} className='uploadimg'/>
+          <h3>Upload from local</h3>
+
+          </button>
+          </div>
+      <div className='upload'>
+         <button style={{ display: "", width: 120, height: 120,justifyContent:'center',alignItems:'center' }} type="file" onClick={triggerModal} >
+          <img src={Upload} className='uploadimg'/>
+          <h3>Upload Url</h3>
+
           </button>
 
       </div>
+      </div>
+     
 <div className='mainposition'>
 <h2 className='heading'>Men</h2>
 

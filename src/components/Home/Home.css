@@ -64,11 +64,7 @@
     
   }
   .upload{
-    right: 0;
-    align-self: flex-end;
-    position:absolute;
-    margin-top: -100px;
-
+   margin-left: 30px;
   }
   .heading{
     margin-left: 30px;
@@ -76,5 +72,9 @@
   .uploadimg{
     width: 80px;
     height: 80px;
+  }
+  .flexrow{
+    flex-direction: row;
+    display: flex;
   }
  
